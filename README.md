@@ -1,4 +1,4 @@
-# monthly [![Build Status](https://travis-ci.org/WebReflection/monthly.svg?branch=master)](https://travis-ci.org/WebReflection/monthly) [![License: ISC](https://img.shields.io/badge/License-ISC-yellow.svg)](https://opensource.org/licenses/ISC)
+# monthly [![Build Status](https://travis-ci.com/WebReflection/monthly.svg?branch=master)](https://travis-ci.org/WebReflection/monthly) [![License: ISC](https://img.shields.io/badge/License-ISC-yellow.svg)](https://opensource.org/licenses/ISC)
 
 A simplified way to show a calendar month in any console.
 
