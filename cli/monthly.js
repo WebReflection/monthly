@@ -49,6 +49,7 @@ if (hasThree) {
   output.forEach(addMonth, monthly(options));
   console.log(output.join('\n'));
 } else if (hasYear && !hasMonth) {
+  date.setMonth(0);
   setHighlight(0);
   var output = [monthly(options)];
   for (var i = 1, j; i < 12; i++) {
