@@ -21,8 +21,10 @@ var monthly = (function () {'use strict';
   };
   return function monthly(options) {
     var date = options.date;
-    var highlight = [].concat(options.highlight || [])
-                      .concat(options.invert || []);
+    var highlight = [].concat(options.highlight == null ?
+                      currentDate(date) :
+                      options.highlight
+                    ).concat(options.invert || []);
     var blink = [].concat(options.blink || []);
     var bold = [].concat(options.bold || []);
     var dim = [].concat(options.dim || []);
@@ -78,6 +80,13 @@ var monthly = (function () {'use strict';
     if (table) output.push('┗━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┛');
     return output;
   };
+
+  function currentDate(date) {
+    var now = new Date;
+    return  now.getMonth() === date.getMonth() &&
+            now.getFullYear() === date.getFullYear() ?
+              [date.getDate()] : [];
+  }
 
   function day(date, locale) {
     return date.toLocaleDateString(

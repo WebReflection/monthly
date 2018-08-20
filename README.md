@@ -12,7 +12,7 @@ The exported module is a function that accepts an object with the following prop
   * `locale`: the _optional_ locale to use, by default `en`
   * `table`: an _optional_ boolean value to indicate the layout should be a proper table, by default it's `false`
   * `year`: an _optional_ boolean value to indicate if the month name should be followed the date year, by default it's `false`
-  * `highlight`: an _optional_ day of the month, eventually as list, to highlight. By default it's an empty list.
+  * `highlight`: an _optional_ day of the month, eventually as list, to highlight. By default it's the current date.
   * `blink`: an _optional_ day of the month, eventually as list, to show blinking, where possible. By default it's an empty list
   * `bold`: an _optional_ day of the month, eventually as list, to show as bold, where possible. By default it's an empty list
   * `dim`: an _optional_ day of the month, eventually as list, to show dimmed, where possible. By default it's an empty list
