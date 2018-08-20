@@ -49,3 +49,7 @@ console.log(rows.join('\n'));
 ```
 
 Please note the function returns an array, so that it's possible to stack more months per row as shown via `npm test`.
+
+### Screenshot
+
+![the whole year in console](./screenshot.png)
