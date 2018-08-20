@@ -2,30 +2,30 @@
 
 A simplified way to show a calendar month in any console.
 
-### API
+### API / Signature
 
 The exported module is a function that accepts an object with the following properties:
 
-  * `date`: the mandatory date object to use in order to display the month
-  * `startDay`: the optional day of the week to use as starting day, by default it's `1` (Monday)
-  * `freeDay`: one or more optional days of the week to consider free, by default `[0, 6]` (Sunday, Saturday)
-  * `locale`: the optional locale to use, by default `en`
-  * `table`: an optional boolean value to indicate the layout should be a proper table, by default it's `false`
-  * `highlight`: an optional day of the month, eventually as list, to highlight. By default it's an empty list.
-  * `blink`: an optional day of the month, eventually as list, to show blinking, where possible. By default it's an empty list
-  * `bold`: an optional day of the month, eventually as list, to show as bold, where possible. By default it's an empty list
-  * `dim`: an optional day of the month, eventually as list, to show dimmed, where possible. By default it's an empty list
-  * `underline`: an optional day of the month, eventually as list, to show underlined, where possible. By default it's an empty list
+  * `date`: the _mandatory_ date object to use in order to display the month
+  * `startDay`: the _optional_ day of the week to use as starting day, by default it's `1` ([Monday](https://github.com/WebReflection/monthly#about-days))
+  * `freeDay`: one or more _optional_ days of the week to consider free, by default `[0, 6]` ([Sunday](https://github.com/WebReflection/monthly#about-days), [Saturday](https://github.com/WebReflection/monthly#about-days))
+  * `locale`: the _optional_ locale to use, by default `en`
+  * `table`: an _optional_ boolean value to indicate the layout should be a proper table, by default it's `false`
+  * `highlight`: an _optional_ day of the month, eventually as list, to highlight. By default it's an empty list.
+  * `blink`: an _optional_ day of the month, eventually as list, to show blinking, where possible. By default it's an empty list
+  * `bold`: an _optional_ day of the month, eventually as list, to show as bold, where possible. By default it's an empty list
+  * `dim`: an _optional_ day of the month, eventually as list, to show dimmed, where possible. By default it's an empty list
+  * `underline`: an _optional_ day of the month, eventually as list, to show underlined, where possible. By default it's an empty list
 
 
-#### About Days
+### About Days
 
 The `date.getDay()` method returns `0` for _Sunday_, `1` for _Monday_, and all other days 'till `6` for _Saturday_.
 
 Both `startDay` and `freeDay` use this numeric convention for days of the week, but every other property uses the actual day of the month, which is never `0` or greater than `31`.
 
 
-### Usage
+### Usage Example
 
 ```js
 // import monthly from 'monthly';
