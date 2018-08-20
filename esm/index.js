@@ -48,11 +48,12 @@ var monthly = (function () {'use strict';
       (table ? ' ┃' : '')
     );
     if (table) output.push('┣━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┫');
-    var base = new Date('1978-05-14T00:00:00.000Z'); // I was born this week
+    var base = new Date('1978-05-17'); // my birthday
+    reach(base, 0);
     base.setDate(base.getDate() + startDay);
     var line = [];
     for (var i = 0; i < 7; i++) {
-      line.push(special(2, day(base)));
+      line.push(special(2, day(base, locale)));
       base.setDate(base.getDate() + 1);
     }
     output.push(
@@ -63,8 +64,7 @@ var monthly = (function () {'use strict';
     if (table) output.push('┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫');
     base.setTime(date.getTime());
     base.setDate(1);
-    while (base.getUTCDay() !== startDay)
-      base.setDate(base.getDate() - 1);
+    reach(base, startDay);
     for (var i = 0; i < 6; i++) {
       output.push(
         (table ? '┃ ' : '') +
@@ -95,6 +95,11 @@ var monthly = (function () {'use strict';
     ).slice(0, 2);
   }
 
+  function reach(date, day) {
+    while (date.getDay() !== day)
+      date.setDate(date.getDate() - 1);
+  }
+
   function special(num, str) {
     return '\x1B[' + num + 'm' + str + '\x1B[0m';
     //     enable                       disable
@@ -113,7 +118,7 @@ var monthly = (function () {'use strict';
           day = special(1, day);
         if (
           includes.call(dim, dateNum) ||
-          includes.call(freeDay, date.getUTCDay())
+          includes.call(freeDay, date.getDay())
         )
           day = special(2, day);
         if (includes.call(underline, dateNum))
