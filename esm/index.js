@@ -48,7 +48,7 @@ var monthly = (function () {'use strict';
       (table ? ' ┃' : '')
     );
     if (table) output.push('┣━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┫');
-    var base = new Date(263952000000); // I was born this week
+    var base = new Date('1978-05-14T00:00:00.000Z'); // I was born this week
     base.setDate(base.getDate() + startDay);
     var line = [];
     for (var i = 0; i < 7; i++) {
@@ -63,7 +63,7 @@ var monthly = (function () {'use strict';
     if (table) output.push('┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫');
     base.setTime(date.getTime());
     base.setDate(1);
-    while (base.getDay() !== startDay)
+    while (base.getUTCDay() !== startDay)
       base.setDate(base.getDate() - 1);
     for (var i = 0; i < 6; i++) {
       output.push(
@@ -113,7 +113,7 @@ var monthly = (function () {'use strict';
           day = special(1, day);
         if (
           includes.call(dim, dateNum) ||
-          includes.call(freeDay, date.getDay())
+          includes.call(freeDay, date.getUTCDay())
         )
           day = special(2, day);
         if (includes.call(underline, dateNum))
