@@ -37,12 +37,12 @@ var rows = monthly({
   startDay: 1,
   freeDay: [0, 6],
   locale: 'en',
-  highlight: [3, 9, 11, 20]
+  highlight: [3, 9, 11, 20],
   blink: 9,
   bold: 10,
   dim: 28,
   underline: 12,
-  table: false, // it's the default anyway
+  table: false  // it's the default anyway
 });
 
 console.log(rows.join('\n'));
