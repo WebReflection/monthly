@@ -63,5 +63,13 @@
   ],
   "author": "Andrea Giammarchi",
   "license": "ISC",
-  "description": ""
+  "description": "A simplified way to show a calendar month in any console.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebReflection/monthly.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WebReflection/monthly/issues"
+  },
+  "homepage": "https://github.com/WebReflection/monthly#readme"
 }
