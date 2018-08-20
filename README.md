@@ -11,6 +11,7 @@ The exported module is a function that accepts an object with the following prop
   * `freeDay`: one or more _optional_ days of the week to consider free, by default `[0, 6]` ([Sunday](https://github.com/WebReflection/monthly#about-days), [Saturday](https://github.com/WebReflection/monthly#about-days))
   * `locale`: the _optional_ locale to use, by default `en`
   * `table`: an _optional_ boolean value to indicate the layout should be a proper table, by default it's `false`
+  * `year`: an _optional_ boolean value to indicate if the month name should be followed the date year, by default it's `false`
   * `highlight`: an _optional_ day of the month, eventually as list, to highlight. By default it's an empty list.
   * `blink`: an _optional_ day of the month, eventually as list, to show blinking, where possible. By default it's an empty list
   * `bold`: an _optional_ day of the month, eventually as list, to show as bold, where possible. By default it's an empty list
@@ -42,13 +43,30 @@ var rows = monthly({
   bold: 10,
   dim: 28,
   underline: 12,
-  table: false  // it's the default anyway
+  table: false,
+  year: false
 });
 
 console.log(rows.join('\n'));
 ```
 
 Please note the function returns an array, so that it's possible to stack more months per row as shown via `npm test`.
+
+### As CLI
+
+```
+Usage: monthly [options]
+
+  Options:
+
+    -v, --version      output the version number
+    -m, --month <mm>   Display a calendar for the month. (default: 8)
+    -y, --year [yyyy]  Display a calendar for the whole year. (default: 2018)
+    -s, --sunday       Display Sunday as the first day of the week.
+    -3, --three        Display three months spanning the date.
+    -h, --help         output usage information
+```
+
 
 ### Screenshot
 

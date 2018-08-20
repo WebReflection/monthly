@@ -1,5 +1,6 @@
 {
   "version": "0.1.1",
+  "bin": "cli/monthly.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "unpkg": "min.js",
@@ -71,5 +72,8 @@
   "bugs": {
     "url": "https://github.com/WebReflection/monthly/issues"
   },
-  "homepage": "https://github.com/WebReflection/monthly#readme"
+  "homepage": "https://github.com/WebReflection/monthly#readme",
+  "dependencies": {
+    "commander": "^2.17.1"
+  }
 }
