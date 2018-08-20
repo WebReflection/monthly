@@ -1,0 +1,67 @@
+{
+  "version": "0.0.0",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "unpkg": "min.js",
+  "scripts": {
+    "$": "npm-dollar",
+    "build": "npm run $ build",
+    "bundle": "npm run $ bundle",
+    "test": "npm run $ test"
+  },
+  "$": {
+    "bundle": {
+      "cjs": [
+        "cp index.js cjs/index.js",
+        "echo 'module.exports = monthly;' >> cjs/index.js"
+      ],
+      "esm": [
+        "cp index.js esm/index.js",
+        "echo 'export default monthly;' >> esm/index.js"
+      ],
+      "min": [
+        [
+          "echo \"/*! (c) Andrea Giammarchi (ISC) */$(",
+          "uglifyjs index.js --support-ie8 --comments=/^!/ -c -m",
+          ")\" > min.js"
+        ]
+      ]
+    },
+    "build": [
+      "$ bundle.cjs",
+      "$ bundle.esm",
+      "$ bundle.min",
+      "$ test",
+      "$ size"
+    ],
+    "size": {
+      "gzip": [
+        [
+          "cat index.js |",
+          "wc -c;cat min.js |",
+          "wc -c;gzip -c9 min.js |",
+          "wc -c"
+        ]
+      ],
+      "brotli": "cat min.js | brotli | wc -c"
+    },
+    "test": [
+      "node test/index.js"
+    ]
+  },
+  "name": "monthly",
+  "devDependencies": {
+    "npm-dollar": "^0.1.3",
+    "uglify-js": "^3.4.7"
+  },
+  "keywords": [
+    "calendar",
+    "month",
+    "console",
+    "graphical",
+    "gregorian"
+  ],
+  "author": "Andrea Giammarchi",
+  "license": "ISC",
+  "description": ""
+}
