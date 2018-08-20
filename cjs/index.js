@@ -48,7 +48,7 @@ var monthly = (function () {'use strict';
       (table ? ' ┃' : '')
     );
     if (table) output.push('┣━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┫');
-    var base = new Date('1978-05-14'); // I was born this week
+    var base = new Date(263952000000); // I was born this week
     base.setDate(base.getDate() + startDay);
     var line = [];
     for (var i = 0; i < 7; i++) {
