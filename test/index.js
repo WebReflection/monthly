@@ -1,3 +1,5 @@
+require('./cover.js');
+
 var monthly = require('../cjs');
 
 var date = new Date;
@@ -30,3 +32,5 @@ console.log('');
 function addLine(line, i, arr) {
   arr[i] = line + '  ' + this[i];
 }
+
+require('./booking.js');

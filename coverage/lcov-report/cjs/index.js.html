@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for cjs/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">cjs/</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>79/79</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>73/73</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>9/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>75/75</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">112×</span>
+<span class="cline-any cline-yes">112×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">96×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">96×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">127×</span>
+<span class="cline-any cline-yes">99×</span>
+<span class="cline-any cline-yes">99×</span>
+<span class="cline-any cline-yes">99×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">112×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">103×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3622×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">440×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">96×</span>
+<span class="cline-any cline-yes">96×</span>
+<span class="cline-any cline-yes">672×</span>
+<span class="cline-any cline-yes">488×</span>
+<span class="cline-any cline-yes">488×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">488×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">147×</span>
+<span class="cline-any cline-yes">488×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">488×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">488×</span>
+<span class="cline-any cline-yes">61×</span>
+<span class="cline-any cline-yes">488×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">184×</span>
+<span class="cline-any cline-yes">672×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">96×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var monthly = (function () {'use strict';
+  /**
+   * ISC License
+   *
+   * Copyright (c) 2018, Andrea Giammarchi, @WebReflection
+   *
+   * Permission to use, copy, modify, and/or distribute this software for any
+   * purpose with or without fee is hereby granted, provided that the above
+   * copyright notice and this permission notice appear in all copies.
+   *
+   * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+   * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+   * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+   * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+   * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
+   * OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+   * PERFORMANCE OF THIS SOFTWARE.
+   */
+  return function monthly(options) {
+    var date = options.date;
+    var highlight = [].concat(options.highlight == null ?
+                      currentDate(date) :
+                      options.highlight
+                    ).concat(options.invert || []).map(asDate, date);
+    var blink = [].concat(options.blink || []).map(asDate, date);
+    var bold = [].concat(options.bold || []).map(asDate, date);
+    var dim = [].concat(options.dim || []).map(asDate, date);
+    var underline = [].concat(options.underline || []).map(asDate, date);
+    var locale = options.locale || 'en';
+    var freeDay = [].concat(options.freeDay == null ? [0,6] : options.freeDay);
+    var startDay = options.startDay == null ? 1 : options.startDay;
+    var table = !!options.table;
+    var gap = table ? 16 : 10;
+    var month = date.toLocaleDateString(locale, {month: 'long'}) +
+                (options.year ? (' ' + date.getFullYear()) : '');
+    var header =  [
+      ' '.repeat(gap - Math.ceil(month.length / 2)),
+      ' '.repeat(gap - Math.floor(month.length / 2))
+    ].join(month);
+    var output = [];
+    if (table) output.push(special(2, '┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓'));
+    output.push(
+      (table ? special(2, '┃ ') : '') +
+      special(7, header) +
+      (table ? special(2, ' ┃') : '')
+    );
+    if (table) output.push(special(2, '┣━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┫'));
+    var base = new Date('1978-05-17'); // my birthday
+    reach(base, 0);
+    base.setDate(base.getDate() + startDay);
+    var line = [];
+    for (var i = 0; i &lt; 7; i++) {
+      line.push(special(2, day(base, locale)));
+      base.setDate(base.getDate() + 1);
+    }
+    output.push(
+      (table ? special(2, '┃ ') : '') +
+      line.join(table ? special(2, ' ┃ ') : ' ') +
+      (table ? special(2, ' ┃') : '')
+    );
+    if (table) output.push(special(2, '┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫'));
+    base.setTime(date.getTime());
+    base.setDate(1);
+    reach(base, startDay);
+    for (var i = 0; i &lt; 6; i++) {
+      output.push(
+        (table ? special(2, '┃ ') : '') +
+        row(
+          base, date, freeDay,
+          highlight, blink, bold, dim, underline
+        ).join(table ? special(2, ' ┃ ') : ' ') +
+        (table ? special(2, ' ┃') : '')
+      );
+      if (i !== 5 &amp;&amp; table)
+        output.push(special(2, '┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫'));
+    }
+    if (table) output.push(special(2, '┗━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┛'));
+    return output;
+  };
+&nbsp;
+  function asDate(num) {
+    if (typeof num === 'number') {
+      var date = new Date(this.getTime());
+      date.setDate(num);
+      return date;
+    }
+    return num;
+  }
+&nbsp;
+  function currentDate(date) {
+    var now = new Date;
+    return  now.getMonth() === date.getMonth() &amp;&amp;
+            now.getFullYear() === date.getFullYear() ?
+              [date.getDate()] : [];
+  }
+&nbsp;
+  function day(date, locale) {
+    return date.toLocaleDateString(
+      locale,
+      {weekday: 'short'}
+    ).slice(0, 2);
+  }
+&nbsp;
+  function reach(date, day) {
+    while (date.getDay() !== day)
+      date.setDate(date.getDate() - 1);
+  }
+&nbsp;
+  function similar(date) {
+    return  this.getDate() === date.getDate() &amp;&amp;
+            this.getMonth() === date.getMonth() &amp;&amp;
+            this.getFullYear() === date.getFullYear();
+  }
+&nbsp;
+  function special(num, str) {
+    return '\x1B[' + num + 'm' + str + '\x1B[0m';
+    //     enable                       disable
+  }
+&nbsp;
+  function row(
+    date, source, freeDay,
+    highlight, blink, bold, dim, underline
+  ) {
+    var line = [];
+    while (line.length &lt; 7) {
+      if (source.getMonth() === date.getMonth()) {
+        var day = (' ' + date.getDate()).slice(-2);
+        if (bold.some(similar, date))
+          day = special(1, day);
+        if (
+          -1 &lt; freeDay.indexOf(date.getDay()) ||
+          dim.some(similar, date)
+        )
+          day = special(2, day);
+        if (underline.some(similar, date))
+          day = special(4, day);
+        if (blink.some(similar, date))
+          day = special(5, day);
+        if (highlight.some(similar, date))
+          day = special(7, day);
+        line.push(day);
+      }
+      else
+        line.push('  ');
+      date.setDate(date.getDate() + 1);
+    }
+    return line;
+  }
+}());
+module.exports = monthly;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Aug 21 2018 12:46:28 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
