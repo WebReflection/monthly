@@ -18,7 +18,8 @@ var monthly = (function () {'use strict';
    */
   var DIM = 2;
   try {
-    if (/\bMicrosoft\b/.test(require('os').release()))
+    var os = require('os');
+    if (/\bMicrosoft\b/.test(os.release()) || os.platform() === 'win32')
       DIM = 90;
   } catch(meh) {}
   return function monthly(options) {
