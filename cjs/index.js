@@ -16,21 +16,18 @@ var monthly = (function () {'use strict';
    * OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
    * PERFORMANCE OF THIS SOFTWARE.
    */
-  var includes = [].includes || function (value) {
-    return -1 < this.indexOf(value);
-  };
   return function monthly(options) {
     var date = options.date;
     var highlight = [].concat(options.highlight == null ?
                       currentDate(date) :
                       options.highlight
-                    ).concat(options.invert || []);
-    var blink = [].concat(options.blink || []);
-    var bold = [].concat(options.bold || []);
-    var dim = [].concat(options.dim || []);
-    var underline = [].concat(options.underline || []);
-    var freeDay = [].concat(options.freeDay == null ? [0,6] : options.freeDay);
+                    ).concat(options.invert || []).map(asDate, date);
+    var blink = [].concat(options.blink || []).map(asDate, date);
+    var bold = [].concat(options.bold || []).map(asDate, date);
+    var dim = [].concat(options.dim || []).map(asDate, date);
+    var underline = [].concat(options.underline || []).map(asDate, date);
     var locale = options.locale || 'en';
+    var freeDay = [].concat(options.freeDay == null ? [0,6] : options.freeDay);
     var startDay = options.startDay == null ? 1 : options.startDay;
     var table = !!options.table;
     var gap = table ? 16 : 10;
@@ -41,13 +38,13 @@ var monthly = (function () {'use strict';
       ' '.repeat(gap - Math.floor(month.length / 2))
     ].join(month);
     var output = [];
-    if (table) output.push('┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓');
+    if (table) output.push(special(2, '┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓'));
     output.push(
-      (table ? '┃ ' : '') +
+      (table ? special(2, '┃ ') : '') +
       special(7, header) +
-      (table ? ' ┃' : '')
+      (table ? special(2, ' ┃') : '')
     );
-    if (table) output.push('┣━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┫');
+    if (table) output.push(special(2, '┣━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┫'));
     var base = new Date('1978-05-17'); // my birthday
     reach(base, 0);
     base.setDate(base.getDate() + startDay);
@@ -57,29 +54,38 @@ var monthly = (function () {'use strict';
       base.setDate(base.getDate() + 1);
     }
     output.push(
-      (table ? '┃ ' : '') +
-      line.join(table ? ' ┃ ' : ' ') +
-      (table ? ' ┃' : '')
+      (table ? special(2, '┃ ') : '') +
+      line.join(table ? special(2, ' ┃ ') : ' ') +
+      (table ? special(2, ' ┃') : '')
     );
-    if (table) output.push('┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫');
+    if (table) output.push(special(2, '┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫'));
     base.setTime(date.getTime());
     base.setDate(1);
     reach(base, startDay);
     for (var i = 0; i < 6; i++) {
       output.push(
-        (table ? '┃ ' : '') +
+        (table ? special(2, '┃ ') : '') +
         row(
           base, date, freeDay,
           highlight, blink, bold, dim, underline
-        ).join(table ? ' ┃ ' : ' ') +
-        (table ? ' ┃' : '')
+        ).join(table ? special(2, ' ┃ ') : ' ') +
+        (table ? special(2, ' ┃') : '')
       );
       if (i !== 5 && table)
-        output.push('┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫');
+        output.push(special(2, '┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫'));
     }
-    if (table) output.push('┗━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┛');
+    if (table) output.push(special(2, '┗━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┛'));
     return output;
   };
+
+  function asDate(num) {
+    if (typeof num === 'number') {
+      var date = new Date(this.getTime());
+      date.setDate(num);
+      return date;
+    }
+    return num;
+  }
 
   function currentDate(date) {
     var now = new Date;
@@ -100,6 +106,12 @@ var monthly = (function () {'use strict';
       date.setDate(date.getDate() - 1);
   }
 
+  function similar(date) {
+    return  this.getDate() === date.getDate() &&
+            this.getMonth() === date.getMonth() &&
+            this.getFullYear() === date.getFullYear();
+  }
+
   function special(num, str) {
     return '\x1B[' + num + 'm' + str + '\x1B[0m';
     //     enable                       disable
@@ -112,20 +124,19 @@ var monthly = (function () {'use strict';
     var line = [];
     while (line.length < 7) {
       if (source.getMonth() === date.getMonth()) {
-        var dateNum = date.getDate();
-        var day = (' ' + dateNum).slice(-2);
-        if (includes.call(bold, dateNum))
+        var day = (' ' + date.getDate()).slice(-2);
+        if (bold.some(similar, date))
           day = special(1, day);
         if (
-          includes.call(dim, dateNum) ||
-          includes.call(freeDay, date.getDay())
+          -1 < freeDay.indexOf(date.getDay()) ||
+          dim.some(similar, date)
         )
           day = special(2, day);
-        if (includes.call(underline, dateNum))
+        if (underline.some(similar, date))
           day = special(4, day);
-        if (includes.call(blink, dateNum))
+        if (blink.some(similar, date))
           day = special(5, day);
-        if (includes.call(highlight, dateNum))
+        if (highlight.some(similar, date))
           day = special(7, day);
         line.push(day);
       }

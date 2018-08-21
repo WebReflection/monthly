@@ -25,6 +25,8 @@ The `date.getDay()` method returns `0` for _Sunday_, `1` for _Monday_, and all o
 
 Both `startDay` and `freeDay` use this numeric convention for days of the week, but every other property uses the actual day of the month, which is never `0` or greater than `31`.
 
+You can also pass just dates objects for every other field that is not `startDay` or `freeDay`, the function will convert those automatically.
+
 
 ### Usage Example
 
