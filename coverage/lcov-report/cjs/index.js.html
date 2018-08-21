@@ -22,12 +22,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>79/79</span>
+        <span class='fraction'>83/83</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>73/73</span>
+        <span class='fraction'>75/75</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>75/75</span>
+        <span class='fraction'>83/83</span>
       </div>
     </div>
   </div>
@@ -193,7 +193,16 @@
 148
 149
 150
-151</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -211,7 +220,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-yes">16×</span>
 <span class="cline-any cline-yes">16×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -234,12 +248,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">16×</span>
 <span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-yes">16×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-yes">16×</span>
 <span class="cline-any cline-yes">16×</span>
 <span class="cline-any cline-yes">16×</span>
@@ -254,6 +270,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-yes">16×</span>
 <span class="cline-any cline-yes">16×</span>
 <span class="cline-any cline-yes">16×</span>
@@ -270,6 +287,7 @@
 <span class="cline-any cline-yes">10×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-yes">16×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -342,7 +360,7 @@
 <span class="cline-any cline-yes">96×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var monthly = (function () {'use strict';
   /**
    * ISC License
@@ -361,6 +379,11 @@
    * OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
    * PERFORMANCE OF THIS SOFTWARE.
    */
+  var DIM = 2;
+  try {
+    if (/\bMicrosoft\b/.test(require('os').release()))
+      DIM = 90;
+  } catch(meh) {}
   return function monthly(options) {
     var date = options.date;
     var highlight = [].concat(options.highlight == null ?
@@ -383,43 +406,47 @@
       ' '.repeat(gap - Math.floor(month.length / 2))
     ].join(month);
     var output = [];
-    if (table) output.push(special(2, '┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓'));
+    if (table)
+      output.push(special(DIM, '┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓'));
     output.push(
-      (table ? special(2, '┃ ') : '') +
+      (table ? special(DIM, '┃ ') : '') +
       special(7, header) +
-      (table ? special(2, ' ┃') : '')
+      (table ? special(DIM, ' ┃') : '')
     );
-    if (table) output.push(special(2, '┣━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┫'));
+    if (table)
+      output.push(special(DIM, '┣━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┫'));
     var base = new Date('1978-05-17'); // my birthday
     reach(base, 0);
     base.setDate(base.getDate() + startDay);
     var line = [];
     for (var i = 0; i &lt; 7; i++) {
-      line.push(special(2, day(base, locale)));
+      line.push(special(DIM, day(base, locale)));
       base.setDate(base.getDate() + 1);
     }
     output.push(
-      (table ? special(2, '┃ ') : '') +
-      line.join(table ? special(2, ' ┃ ') : ' ') +
-      (table ? special(2, ' ┃') : '')
+      (table ? special(DIM, '┃ ') : '') +
+      line.join(table ? special(DIM, ' ┃ ') : ' ') +
+      (table ? special(DIM, ' ┃') : '')
     );
-    if (table) output.push(special(2, '┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫'));
+    if (table)
+      output.push(special(DIM, '┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫'));
     base.setTime(date.getTime());
     base.setDate(1);
     reach(base, startDay);
     for (var i = 0; i &lt; 6; i++) {
       output.push(
-        (table ? special(2, '┃ ') : '') +
+        (table ? special(DIM, '┃ ') : '') +
         row(
           base, date, freeDay,
           highlight, blink, bold, dim, underline
-        ).join(table ? special(2, ' ┃ ') : ' ') +
-        (table ? special(2, ' ┃') : '')
+        ).join(table ? special(DIM, ' ┃ ') : ' ') +
+        (table ? special(DIM, ' ┃') : '')
       );
       if (i !== 5 &amp;&amp; table)
-        output.push(special(2, '┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫'));
+        output.push(special(DIM, '┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫'));
     }
-    if (table) output.push(special(2, '┗━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┛'));
+    if (table)
+      output.push(special(DIM, '┗━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┛'));
     return output;
   };
 &nbsp;
@@ -476,7 +503,7 @@
           -1 &lt; freeDay.indexOf(date.getDay()) ||
           dim.some(similar, date)
         )
-          day = special(2, day);
+          day = special(DIM, day);
         if (underline.some(similar, date))
           day = special(4, day);
         if (blink.some(similar, date))
@@ -499,7 +526,7 @@ module.exports = monthly;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Aug 21 2018 12:46:28 GMT+0200 (CEST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Aug 21 2018 17:10:46 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../prettify.js"></script>

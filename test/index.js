@@ -1,4 +1,14 @@
+var os = require('os');
+var release = os.release;
+os.release = function () {
+  return '4.4.0-17134-Microsoft';
+};
+
 require('./cover.js');
+
+delete require.cache[require.resolve('../cjs')];
+
+os.release = release;
 
 var monthly = require('../cjs');
 

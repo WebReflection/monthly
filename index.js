@@ -16,6 +16,11 @@ var monthly = (function () {'use strict';
    * OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
    * PERFORMANCE OF THIS SOFTWARE.
    */
+  var DIM = 2;
+  try {
+    if (/\bMicrosoft\b/.test(require('os').release()))
+      DIM = 90;
+  } catch(meh) {}
   return function monthly(options) {
     var date = options.date;
     var highlight = [].concat(options.highlight == null ?
@@ -38,43 +43,47 @@ var monthly = (function () {'use strict';
       ' '.repeat(gap - Math.floor(month.length / 2))
     ].join(month);
     var output = [];
-    if (table) output.push(special(2, '┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓'));
+    if (table)
+      output.push(special(DIM, '┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓'));
     output.push(
-      (table ? special(2, '┃ ') : '') +
+      (table ? special(DIM, '┃ ') : '') +
       special(7, header) +
-      (table ? special(2, ' ┃') : '')
+      (table ? special(DIM, ' ┃') : '')
     );
-    if (table) output.push(special(2, '┣━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┫'));
+    if (table)
+      output.push(special(DIM, '┣━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┳━━━━┫'));
     var base = new Date('1978-05-17'); // my birthday
     reach(base, 0);
     base.setDate(base.getDate() + startDay);
     var line = [];
     for (var i = 0; i < 7; i++) {
-      line.push(special(2, day(base, locale)));
+      line.push(special(DIM, day(base, locale)));
       base.setDate(base.getDate() + 1);
     }
     output.push(
-      (table ? special(2, '┃ ') : '') +
-      line.join(table ? special(2, ' ┃ ') : ' ') +
-      (table ? special(2, ' ┃') : '')
+      (table ? special(DIM, '┃ ') : '') +
+      line.join(table ? special(DIM, ' ┃ ') : ' ') +
+      (table ? special(DIM, ' ┃') : '')
     );
-    if (table) output.push(special(2, '┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫'));
+    if (table)
+      output.push(special(DIM, '┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫'));
     base.setTime(date.getTime());
     base.setDate(1);
     reach(base, startDay);
     for (var i = 0; i < 6; i++) {
       output.push(
-        (table ? special(2, '┃ ') : '') +
+        (table ? special(DIM, '┃ ') : '') +
         row(
           base, date, freeDay,
           highlight, blink, bold, dim, underline
-        ).join(table ? special(2, ' ┃ ') : ' ') +
-        (table ? special(2, ' ┃') : '')
+        ).join(table ? special(DIM, ' ┃ ') : ' ') +
+        (table ? special(DIM, ' ┃') : '')
       );
       if (i !== 5 && table)
-        output.push(special(2, '┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫'));
+        output.push(special(DIM, '┣━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━╋━━━━┫'));
     }
-    if (table) output.push(special(2, '┗━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┛'));
+    if (table)
+      output.push(special(DIM, '┗━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┻━━━━┛'));
     return output;
   };
 
@@ -131,7 +140,7 @@ var monthly = (function () {'use strict';
           -1 < freeDay.indexOf(date.getDay()) ||
           dim.some(similar, date)
         )
-          day = special(2, day);
+          day = special(DIM, day);
         if (underline.some(similar, date))
           day = special(4, day);
         if (blink.some(similar, date))
