@@ -7,3 +7,4 @@ test/*
 _config.yml
 package-lock.json
 screenshot.png
+index.html

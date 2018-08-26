@@ -1,29 +1,33 @@
 #!/usr/bin/env node
 
+var path = require('path');
 var program = require('commander');
-var monthly = require('../cjs');
+var monthly = require(path.join('..', 'cjs'));
 var date = new Date;
 var day = date.getDate();
 var month = date.getMonth();
 var year = date.getFullYear();
 var options = {
   date: date,
-  startDay: 1,
   highlight: date.getDate(),
-  year: true
+  startDay: 1,
+  year: true,
+  _holidays: []
 };
 
 program
-  .version(require('../package.json').version, '-v, --version')
-  .option('-m, --month <mm>', 'Display a calendar for the month.', /^(?:(?:0?[1-9])|(?:1[012]))$/, month + 1)
-  .option('-y, --year [yyyy]', 'Display a calendar for the whole year. (default: ' + year + ')', /^[12][0-9]{3}$/)
-  .option('-s, --sunday', 'Display Sunday as the first day of the week.')
-  .option('-3, --three', 'Display three months spanning the date.')
+  .option('--holidays <cc>', 'dim holidays for the ISO 3166 country. (example: it de uk us)', /^(?:[a-z]{2},)*(?:[a-z]{2})$/i)
+  .option('-m, --month <mm>', 'display a calendar for the month.', /^(?:(?:0?[1-9])|(?:1[012]))$/, month + 1)
+  .option('-y, --year [yyyy]', 'display a calendar for the whole year. (default: ' + year + ')', /^[12][0-9]{3}$/)
+  .option('-s, --sunday', 'display Sunday as the first day of the week.')
+  .option('-3, --three', 'display three months spanning the date.')
+  .version(require(path.join('..', 'package.json')).version, '-v, --version')
   .parse(process.argv);
 
 if (program.sunday)
   options.startDay = 0;
 
+var hasHolidays = !!program.holidays;
 var hasMonth = typeof program.month === 'string';
 var hasYear = !!program.year;
 var hasThree = !!program.three;
@@ -33,6 +37,19 @@ if (hasMonth)
 
 if (hasYear && typeof program.year === 'string')
   date.setFullYear(parseInt(program.year, 10));
+
+if (hasHolidays)
+  program.holidays.toLowerCase().split(',').forEach(
+    function (lang) {
+      try {
+        var days = require(
+          path.join('..', 'holidays', lang, 'index.json')
+        );
+        this.push.apply(this, days.map(addYear, date.getFullYear()));
+      } catch (nope) {}
+    },
+    options._holidays
+  );
 
 if (hasThree) {
   var currentMonth = date.getMonth();
@@ -72,11 +89,15 @@ function addMonth(line, i, arr) {
   arr[i] = line + '  ' + this[i];
 }
 
-function setHighlight(i) {
-  options.highlight = i === month &&
-                      date.getFullYear() === year? day : 0;
+function addYear(mmdd) {
+  return new Date(this + '-' + mmdd);
 }
 
 function newLine(lines) {
   return lines.join('\n');
+}
+
+function setHighlight(i) {
+  options.highlight = i === month &&
+                      date.getFullYear() === year? day : 0;
 }

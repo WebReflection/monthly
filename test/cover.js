@@ -6,6 +6,7 @@ yesterday.setMonth(yesterday.getMonth() - 1);
 
 console.log(monthly({
   date: yesterday,
+  dim: '2018-08-26',
   table: true,
   year: true
 }).join('\n'));

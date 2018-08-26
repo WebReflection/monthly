@@ -28,9 +28,12 @@ var monthly = (function () {'use strict';
                       currentDate(date) :
                       options.highlight
                     ).concat(options.invert || []).map(asDate, date);
+    var dim = [].concat(
+      options.dim || [],
+      options._holidays || []
+    ).map(asDate, date);
     var blink = [].concat(options.blink || []).map(asDate, date);
     var bold = [].concat(options.bold || []).map(asDate, date);
-    var dim = [].concat(options.dim || []).map(asDate, date);
     var underline = [].concat(options.underline || []).map(asDate, date);
     var locale = options.locale || 'en';
     var freeDay = [].concat(options.freeDay == null ? [0,6] : options.freeDay);
@@ -93,6 +96,8 @@ var monthly = (function () {'use strict';
       var date = new Date(this.getTime());
       date.setDate(num);
       return date;
+    } else if (typeof num === 'string') {
+      return new Date(num);
     }
     return num;
   }

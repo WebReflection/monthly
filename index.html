@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Monthly - Calendar</title>
+  <style>
+  html {
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+  }
+  a {
+    color: gray;
+    font-size: small;
+  }
+
+  /* Monthly Console Style */
+  .monthly {
+    text-align: left;
+    margin: auto;
+    display: inline-block;
+  }
+  .monthly .bold {
+    font-weight: bold;
+  }
+  .monthly .underline {
+    text-decoration: underline;
+  }
+  .monthly .blink{
+    text-decoration: blink;
+    animation-name: monthly-blinker;
+    animation-duration: 0.5s;
+    animation-iteration-count:infinite;
+    animation-timing-function:ease-in-out;
+    animation-direction: alternate;
+  }
+  .monthly .highlight {
+    background-color: white;
+    color: black;
+  }
+  .monthly .dim {
+    opacity: 0.7;
+  }
+  @keyframes monthly-blinker {
+    from {opacity: 1.0;}
+    to {opacity: 0.0;}
+  }
+
+  </style>
+  <script defer src="min.js"></script>
+  <script defer>
+  this.onload = function () {
+    document.querySelector('pre').innerHTML =
+      monthly({date: new Date}).join('\n')
+        .replace(/\x1B\[(\d+)m/g, function ($0, $1) {
+          switch (parseInt($1, 10)) {
+            case 0: return '</span>';
+            case 1: return '<span class="bold">';
+            case 4: return '<span class="underline">';
+            case 5: return '<span class="blink">';
+            case 7: return '<span class="highlight">';
+            default: return '<span class="dim">';
+          }
+        });
+  };
+  </script>
+</head>
+<body>
+  <pre class="monthly"></pre>
+  <br>
+  <a href="https://github.com/WebReflection/monthly#monthly---">&copy;WebReflection</a> 
+</body>
+</html>
