@@ -16,7 +16,7 @@ var options = {
 };
 
 program
-  .option('--holidays <cc>', 'dim holidays for the ISO 3166 country. (example: it de uk us)', /^(?:[a-z]{2},)*(?:[a-z]{2})$/i)
+  .option('--holidays <cc>', 'dim holidays for the ISO 3166 country. (example: de gb it us)', /^(?:[a-z]{2},)*(?:[a-z]{2})$/i)
   .option('-m, --month <mm>', 'display a calendar for the month.', /^(?:(?:0?[1-9])|(?:1[012]))$/, month + 1)
   .option('-y, --year [yyyy]', 'display a calendar for the whole year. (default: ' + year + ')', /^[12][0-9]{3}$/)
   .option('-s, --sunday', 'display Sunday as the first day of the week.')
