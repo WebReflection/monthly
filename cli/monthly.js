@@ -45,7 +45,7 @@ if (hasHolidays)
         var days = require(
           path.join('..', 'holidays', lang, 'index.json')
         );
-        this.push.apply(this, days.map(addYear, date.getFullYear()));
+        this.push.apply(this, filterMap(days, withYear, date.getFullYear()));
       } catch (nope) {}
     },
     options._holidays
@@ -89,8 +89,14 @@ function addMonth(line, i, arr) {
   arr[i] = line + '  ' + this[i];
 }
 
-function addYear(mmdd) {
+function withYear(mmdd) {
+  if (Array.isArray(mmdd))
+    return mmdd.find(sameYear, this);
   return new Date(this + '-' + mmdd);
+}
+
+function sameYear(date) {
+  return new Date(date).getFullYear() === +this;
 }
 
 function newLine(lines) {
@@ -100,4 +106,13 @@ function newLine(lines) {
 function setHighlight(i) {
   options.highlight = i === month &&
                       date.getFullYear() === year? day : 0;
+}
+
+function filterMap(arr, fn, thisArg) {
+  var result = [];
+  arr.forEach(function () {
+    var val = fn.apply(this, arguments);
+    if (val !== undefined) result.push(val);
+  }, thisArg);
+  return result;
 }
