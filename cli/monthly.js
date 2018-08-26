@@ -7,15 +7,16 @@ var date = new Date;
 var day = date.getDate();
 var month = date.getMonth();
 var year = date.getFullYear();
+var _holidays =  {
+  country: [],
+  region: []
+};
 var options = {
   date: date,
   highlight: date.getDate(),
   startDay: 1,
   year: true,
-  _holidays: {
-    country: [],
-    region: []
-  }
+  _holidays: _holidays
 };
 
 program
@@ -48,19 +49,19 @@ if (hasHolidays) {
         var module = require(path.join('..', 'holidays', lang, 'index.js'));
         this.country.push.apply(
           this.country,
-          module.country.map(addYear, date.getFullYear())
+          module.country.map(addYear, date.getFullYear()).filter(nulled)
         );
         this.region.push.apply(
           this.region,
-          module.region.map(addYear, date.getFullYear())
+          module.region.map(addYear, date.getFullYear()).filter(nulled)
         );
       } catch (nope) {}
     },
-    options._holidays
+    _holidays
   );
-  options._holidays.region.push.apply(
-    options._holidays.region,
-    options._holidays.country
+  _holidays.region.push.apply(
+    _holidays.region,
+    _holidays.country
   );
 }
 
@@ -110,6 +111,10 @@ function addYear(mmdd) {
 
 function newLine(lines) {
   return lines.join('\n');
+}
+
+function nulled(date) {
+  return date !=  null;
 }
 
 function setHighlight(i) {
