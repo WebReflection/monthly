@@ -13,7 +13,18 @@ module.exports = {
     "12-25",
     "12-26"
   ],
-  region: []
+  region: [
+    "04-25",
+    "04-28",
+    "06-24",
+    "06-29",
+    "07-15",
+    "09-19",
+    "10-04",
+    "11-02",
+    "12-06",
+    "12-07"
+  ]
 };
 
 // https://it.wikipedia.org/wiki/Calcolo_della_Pasqua#Metodo_aritmetico_di_Gauss
