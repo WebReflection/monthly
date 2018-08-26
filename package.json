@@ -9,6 +9,7 @@
     "build": "npm run $ build",
     "bundle": "npm run $ bundle",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "deploy": "git push && git push --tags && npm publish",
     "test": "npm run $ test"
   },
   "$": {
