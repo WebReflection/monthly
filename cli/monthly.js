@@ -12,7 +12,10 @@ var options = {
   highlight: date.getDate(),
   startDay: 1,
   year: true,
-  _holidays: []
+  _holidays: {
+    country: [],
+    region: []
+  }
 };
 
 program
@@ -38,18 +41,28 @@ if (hasMonth)
 if (hasYear && typeof program.year === 'string')
   date.setFullYear(parseInt(program.year, 10));
 
-if (hasHolidays)
+if (hasHolidays) {
   program.holidays.toLowerCase().split(',').forEach(
     function (lang) {
       try {
-        var days = require(
-          path.join('..', 'holidays', lang, 'index.json')
+        var module = require(path.join('..', 'holidays', lang, 'index.js'));
+        this.country.push.apply(
+          this.country,
+          module.country.map(addYear, date.getFullYear())
         );
-        this.push.apply(this, days.map(addYear, date.getFullYear()));
+        this.region.push.apply(
+          this.region,
+          module.region.map(addYear, date.getFullYear())
+        );
       } catch (nope) {}
     },
     options._holidays
   );
+  options._holidays.region.push.apply(
+    options._holidays.region,
+    options._holidays.country
+  );
+}
 
 if (hasThree) {
   var currentMonth = date.getMonth();
@@ -90,7 +103,9 @@ function addMonth(line, i, arr) {
 }
 
 function addYear(mmdd) {
-  return new Date(this + '-' + mmdd);
+  return typeof mmdd === 'string' ?
+          new Date(this + '-' + mmdd) :
+          mmdd(+this);
 }
 
 function newLine(lines) {

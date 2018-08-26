@@ -24,17 +24,21 @@ var monthly = (function () {'use strict';
   } catch(meh) {}
   return function monthly(options) {
     var date = options.date;
+    var holidays = options._holidays || {country: [], region: []};
+    var dim = [].concat(
+      options.dim || [],
+      holidays.region
+    ).map(asDate, date);
+    var underline = [].concat(
+      options.underline || [],
+      holidays.country
+    ).map(asDate, date);
     var highlight = [].concat(options.highlight == null ?
                       currentDate(date) :
                       options.highlight
                     ).concat(options.invert || []).map(asDate, date);
-    var dim = [].concat(
-      options.dim || [],
-      options._holidays || []
-    ).map(asDate, date);
     var blink = [].concat(options.blink || []).map(asDate, date);
     var bold = [].concat(options.bold || []).map(asDate, date);
-    var underline = [].concat(options.underline || []).map(asDate, date);
     var locale = options.locale || 'en';
     var freeDay = [].concat(options.freeDay == null ? [0,6] : options.freeDay);
     var startDay = options.startDay == null ? 1 : options.startDay;
