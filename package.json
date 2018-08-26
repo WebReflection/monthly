@@ -48,7 +48,7 @@
       "brotli": "cat min.js | brotli | wc -c"
     },
     "test": [
-      "istanbul cover test/index.js"
+      "node test/holidays.js && istanbul cover test/index.js"
     ]
   },
   "name": "monthly",
