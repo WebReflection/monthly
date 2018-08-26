@@ -61,7 +61,7 @@ Usage: monthly [options]
 
 Options:
 
-  --holidays <cc>    underline holidays for an ISO 3166 country or dim if regional (example: de gb it us)
+  --holidays <cc>    dim holidays for an ISO 3166 country (de gb it us) and underline if national.
   -m, --month <mm>   display a calendar for the month. (default: 8)
   -y, --year [yyyy]  display a calendar for the whole year. (default: 2018)
   -s, --sunday       display Sunday as the first day of the week.

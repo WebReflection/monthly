@@ -20,7 +20,7 @@ var options = {
 };
 
 program
-  .option('--holidays <cc>', 'underline holidays for an ISO 3166 country or dim if regional (example: de gb it us)', /^(?:[a-z]{2},)*(?:[a-z]{2})$/i)
+  .option('--holidays <cc>', 'dim holidays for an ISO 3166 country (de gb it us) and underline if national.', /^(?:[a-z]{2},)*(?:[a-z]{2})$/i)
   .option('-m, --month <mm>', 'display a calendar for the month.', /^(?:(?:0?[1-9])|(?:1[012]))$/, month + 1)
   .option('-y, --year [yyyy]', 'display a calendar for the whole year. (default: ' + year + ')', /^[12][0-9]{3}$/)
   .option('-s, --sunday', 'display Sunday as the first day of the week.')
