@@ -59,15 +59,20 @@ Please note the function returns an array, so that it's possible to stack more m
 ```
 Usage: monthly [options]
 
-  Options:
+Options:
 
-    -v, --version      output the version number
-    -m, --month <mm>   Display a calendar for the month. (default: 8)
-    -y, --year [yyyy]  Display a calendar for the whole year. (default: 2018)
-    -s, --sunday       Display Sunday as the first day of the week.
-    -3, --three        Display three months spanning the date.
-    -h, --help         output usage information
+  --holidays <cc>    dim holidays for the ISO 3166 country. (example: it de uk us)
+  -m, --month <mm>   display a calendar for the month. (default: 8)
+  -y, --year [yyyy]  display a calendar for the whole year. (default: 2018)
+  -s, --sunday       display Sunday as the first day of the week.
+  -3, --three        display three months spanning the date.
+  -v, --version      output the version number
+  -h, --help         output usage information
 ```
+
+Please note the ISO 3166 country must be available in this repository.
+
+If not available, `--holidays` won't have any meaning so please file PRs if you'd like your country vacations listed in here, thanks.
 
 
 ### Screenshot
