@@ -72,7 +72,7 @@ Options:
 
 Please note the ISO 3166 country must be available in this repository.
 
-If not available, `--holidays` won't have any meaning so please file PRs if you'd like your country vacations listed in here, thanks.
+If not available, `--holidays` won't have any meaning so please file PRs if you'd like your country vacations listed in here, following this [example file](https://github.com/WebReflection/monthly/blob/master/holidays/.example/index.js), thanks.
 
 
 ### Screenshot
