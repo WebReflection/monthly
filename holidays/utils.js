@@ -2,6 +2,7 @@ module.exports = {
   after: after,
   ascension: ascension,
   before: before,
+  closestWeekday: closestWeekday,
   corpusChristi: corpusChristi,
   easter: easter,
   pentecost: pentecost,
@@ -20,6 +21,17 @@ function ascension(Y) {
 
 function before(day, fn) {
   return _find(day, fn, -1);
+}
+
+function closestWeekday(mmdd) {
+  return function (Y) {
+    var date = new Date(Y + '-' + mmdd);
+    if (date.getDay() === 6)
+      date.setDate(date.getDate() - 1);
+    else if (date.getDay() === 0)
+      date.setDate(date.getDate() + 1);
+    return date;
+  };
 }
 
 function corpusChristi(Y) {
