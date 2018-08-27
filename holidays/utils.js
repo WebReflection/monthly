@@ -29,7 +29,7 @@ function corpusChristi(Y) {
 }
 
 function easter(Y) {
-  var date = new Date(Y + "-04-01");
+  var date = new Date(Y + '-04-01');
   var a = Y % 19;
   var b = Y % 4;
   var c = Y % 7;

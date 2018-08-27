@@ -3,13 +3,13 @@ var easter = utils.easter;
 
 module.exports = {
   national: [
-    "01-01",
+    '01-01',
     utils.before(2, easter),
     easter,
     utils.after('Monday', '05-01'),
     utils.before('Monday', '05-31'),
-    "12-25",
-    "12-26"
+    '12-25',
+    '12-26'
   ],
   regional: [
     '01-02',

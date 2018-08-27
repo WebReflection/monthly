@@ -20,12 +20,12 @@ var utils = require('../utils');
 // the holiday won't be shown / considered.
 module.exports = {
   national: [
-    "01-01",            // will be new Date("YYYY-01-01")
+    '01-01',            // will be new Date("YYYY-01-01")
     function (YYYY) {   // will also be new Date("YYYY-01-01")
       return new Date(YYYY + '-01-01');
     }
   ],
   regional: [
-    "12-31"             // same as national
+    '12-31'             // same as national
   ]
 };
