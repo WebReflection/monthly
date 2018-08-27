@@ -24,14 +24,14 @@ var monthly = (function () {'use strict';
   } catch(meh) {}
   return function monthly(options) {
     var date = options.date;
-    var holidays = options._holidays || {country: [], region: []};
+    var holidays = options._holidays || {national: [], regional: []};
     var dim = [].concat(
       options.dim || [],
-      holidays.region
+      holidays.regional
     ).map(asDate, date);
     var underline = [].concat(
       options.underline || [],
-      holidays.country
+      holidays.national
     ).map(asDate, date);
     var highlight = [].concat(options.highlight == null ?
                       currentDate(date) :

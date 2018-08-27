@@ -1,30 +1,31 @@
-var common = require('../common');
+var utils = require('../utils');
+var easter = utils.easter;
 
 module.exports = {
-  country: [
-    "01-01",
-    "01-06",
-    common.easter, // Pasqua
-    common.easterMonday, // Pasquetta
-    "04-25",
-    "05-01",
-    "06-02",
-    "08-15",
-    "11-01",
-    "12-08",
-    "12-25",
-    "12-26"
+  national: [
+    "01-01",            // New Year
+    "01-06",            // Epiphany
+    easter,             // Pasqua
+    utils.after(1, easter), // Pasquetta
+    "04-25",            // End of WW2
+    "05-01",            // Labour Day
+    "06-02",            // Republic
+    "08-15",            // Assumption of Mary
+    "11-01",            // All saints
+    "12-08",            // Immacolata Concezione
+    "12-25",            // Christmas
+    "12-26"             // St. Stefano
   ],
-  region: [
-    "04-25",
-    "04-28",
-    "06-24",
-    "06-29",
-    "07-15",
-    "09-19",
-    "10-04",
-    "11-02",
-    "12-06",
-    "12-07"
+  regional: [
+    "04-28",  // Sardinia
+    "05-04",  // Ancona
+    "06-24",  // Florence, Genoa, Turin
+    "06-29",  // Rome
+    "07-15",  // Palermo
+    "09-19",  // Naples
+    "10-04",  // Bologna
+    "11-02",  // Trieste
+    "12-06",  // Bari
+    "12-07"   // Milan
   ]
 };

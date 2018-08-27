@@ -6,13 +6,15 @@ require('fs').readdir(
   holidays,
   function (error, files) {
     files.forEach(function (lang) {
-      var holiday = path.join(holidays, lang, 'index.js');
-      var module = require(holiday);
-      if (
-        !module.country.every(validHoliday, year) ||
-        !module.region.every(validHoliday, year)
-      )
-        throw new Error(lang + ' is not a valid holidays file.');
+      if (/^[a-z]{2}$/.test(lang)) {
+        var holiday = path.join(holidays, lang, 'index.js');
+        var module = require(holiday);
+        if (
+          !module.national.every(validHoliday, year) ||
+          !module.regional.every(validHoliday, year)
+        )
+          throw new Error(lang + ' is not a valid holidays file.');
+      }
     });
   }
 );
