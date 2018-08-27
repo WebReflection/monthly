@@ -7,6 +7,7 @@ var date = new Date;
 var day = date.getDate();
 var month = date.getMonth();
 var year = date.getFullYear();
+var _holidaysFilter = /^(?:[a-z]{2},)*(?:[a-z]{2})$/i;
 var _holidays =  {
   national: [],
   regional: []
@@ -20,7 +21,7 @@ var options = {
 };
 
 program
-  .option('--holidays <cc>', 'dim holidays for an ISO 3166 country (de gb it us) and underline if national.', /^(?:[a-z]{2},)*(?:[a-z]{2})$/i)
+  .option('--holidays <cc>', 'dim holidays for an ISO 3166 country (de gb it us) and underline if national.', _holidaysFilter)
   .option('-m, --month <mm>', 'display a calendar for the month.', /^(?:(?:0?[1-9])|(?:1[012]))$/, month + 1)
   .option('-y, --year [yyyy]', 'display a calendar for the whole year. (default: ' + year + ')', /^[12][0-9]{3}$/)
   .option('-s, --sunday', 'display Sunday as the first day of the week.')
@@ -39,30 +40,41 @@ var hasThree = !!program.three;
 if (hasMonth)
   date.setMonth(parseInt(program.month, 10) - 1);
 
-if (hasYear && typeof program.year === 'string')
-  date.setFullYear(parseInt(program.year, 10));
+if (hasYear && typeof program.year === 'string') {
+  if (/^\d{4}$/.test(program.year))
+    date.setFullYear(parseInt(program.year, 10));
+  else {
+    program.help();
+    process.exit();
+  }
+}
 
-if (hasHolidays) {
-  program.holidays.toLowerCase().split(',').forEach(
-    function (lang) {
-      try {
-        var module = require(path.join('..', 'holidays', lang, 'index.js'));
-        this.national.push.apply(
-          this.national,
-          module.national.map(addYear, date.getFullYear()).filter(nulled)
-        );
-        this.regional.push.apply(
-          this.regional,
-          module.regional.map(addYear, date.getFullYear()).filter(nulled)
-        );
-      } catch (nope) {}
-    },
-    _holidays
-  );
-  _holidays.regional.push.apply(
-    _holidays.regional,
-    _holidays.national
-  );
+if (program.holidays) {
+  if (_holidaysFilter.test(program.holidays)) {
+    program.holidays.toLowerCase().split(',').forEach(
+      function (lang) {
+        try {
+          var module = require(path.join('..', 'holidays', lang, 'index.js'));
+          this.national.push.apply(
+            this.national,
+            module.national.map(addYear, date.getFullYear()).filter(nulled)
+          );
+          this.regional.push.apply(
+            this.regional,
+            module.regional.map(addYear, date.getFullYear()).filter(nulled)
+          );
+        } catch (nope) {}
+      },
+      _holidays
+    );
+    _holidays.regional.push.apply(
+      _holidays.regional,
+      _holidays.national
+    );
+  } else {
+    program.help();
+    process.exit();
+  }
 }
 
 if (hasThree) {
