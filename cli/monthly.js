@@ -55,9 +55,7 @@ if (hasHolidays) {
           this.regional,
           module.regional.map(addYear, date.getFullYear()).filter(nulled)
         );
-      } catch (nope) {
-        console.error(nope);
-      }
+      } catch (nope) {}
     },
     _holidays
   );
