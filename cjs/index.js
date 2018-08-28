@@ -1,3 +1,4 @@
+'use strict';
 var monthly = (function () {'use strict';
   /**
    * ISC License

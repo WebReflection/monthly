@@ -15,7 +15,8 @@
   "$": {
     "bundle": {
       "cjs": [
-        "cp index.js cjs/index.js",
+        "echo \"'use strict';\" > cjs/index.js",
+        "cat index.js >> cjs/index.js",
         "echo 'module.exports = monthly;' >> cjs/index.js"
       ],
       "esm": [
