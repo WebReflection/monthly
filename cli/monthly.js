@@ -3,10 +3,12 @@
 var path = require('path');
 var program = require('commander');
 var monthly = require(path.join('..', 'cjs'));
-var date = new Date;
-var day = date.getDate();
-var month = date.getMonth();
-var year = date.getFullYear();
+var today = new Date;
+var day = today.getDate();
+var month = today.getMonth();
+var year = today.getFullYear();
+var date = new Date(year, month, 1);
+
 var _holidaysFilter = /^(?:[a-z]{2},)*(?:[a-z]{2})$/i;
 var _holidays =  {
   national: [],
@@ -14,7 +16,7 @@ var _holidays =  {
 };
 var options = {
   date: date,
-  highlight: date.getDate(),
+  highlight: day,
   startDay: 1,
   year: true,
   _holidays: _holidays
@@ -32,7 +34,6 @@ program
 if (program.sunday)
   options.startDay = 0;
 
-var hasHolidays = !!program.holidays;
 var hasMonth = typeof program.month === 'string';
 var hasYear = !!program.year;
 var hasThree = !!program.three;
@@ -131,5 +132,5 @@ function nulled(date) {
 
 function setHighlight(i) {
   options.highlight = i === month &&
-                      date.getFullYear() === year? day : 0;
+                      date.getFullYear() === year ? day : 0;
 }
