@@ -1,5 +1,5 @@
 {
-  "version": "0.6.4",
+  "version": "0.6.5",
   "bin": "cli/monthly.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
