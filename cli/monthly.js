@@ -2,6 +2,7 @@
 
 var path = require('path');
 var program = require('commander');
+var holidays = require('./holidays.js');
 var monthly = require(path.join('..', 'cjs'));
 var today = new Date;
 var day = today.getDate();
@@ -10,16 +11,12 @@ var year = today.getFullYear();
 var date = new Date(year, month, 1);
 
 var _holidaysFilter = /^(?:[a-z]{2},)*(?:[a-z]{2})$/i;
-var _holidays =  {
-  national: [],
-  regional: []
-};
 var options = {
   date: date,
   highlight: day,
   startDay: 1,
   year: true,
-  _holidays: _holidays
+  _holidays: null
 };
 
 program
@@ -52,25 +49,10 @@ if (hasYear && typeof program.year === 'string') {
 
 if (program.holidays) {
   if (_holidaysFilter.test(program.holidays)) {
-    program.holidays.toLowerCase().split(',').forEach(
-      function (lang) {
-        try {
-          var module = require(path.join('..', 'holidays', lang, 'index.js'));
-          this.national.push.apply(
-            this.national,
-            module.national.map(addYear, date.getFullYear()).filter(nulled)
-          );
-          this.regional.push.apply(
-            this.regional,
-            module.regional.map(addYear, date.getFullYear()).filter(nulled)
-          );
-        } catch (nope) {}
-      },
-      _holidays
-    );
-    _holidays.regional.push.apply(
-      _holidays.regional,
-      _holidays.national
+    options._holidays = holidays(program.holidays, date.getFullYear());
+    options._holidays.regional.push.apply(
+      options._holidays.regional,
+      options._holidays.national
     );
   } else {
     program.help();
