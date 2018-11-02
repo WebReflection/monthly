@@ -26,6 +26,11 @@ program
   .option('-s, --sunday', 'display Sunday as the first day of the week.')
   .option('-3, --three', 'display three months spanning the date.')
   .version(require(path.join('..', 'package.json')).version, '-v, --version')
+  .on('--help', function () {
+    console.log('  This project is on GitHub');
+    console.log('  https://github.com/WebReflection/monthly');
+    console.log('');
+  })
   .parse(process.argv);
 
 if (program.sunday)
