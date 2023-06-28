@@ -12,7 +12,7 @@ module.exports = function (locale, year) {
   return holidays;
 };
 
-function load(lang, year) {
+function load(lang) {
   try {
     var module = require(path.join('..', 'holidays', lang, 'index.js'));
     this.national.push.apply(

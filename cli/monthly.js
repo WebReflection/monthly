@@ -27,8 +27,9 @@ program
   .option('-3, --three', 'display three months spanning the date.')
   .version(require(path.join('..', 'package.json')).version, '-v, --version')
   .on('--help', function () {
-    console.log('  This project is on GitHub');
-    console.log('  https://github.com/WebReflection/monthly');
+    console.log('');
+    console.log('This project is on GitHub');
+    console.log('https://github.com/WebReflection/monthly');
     console.log('');
   })
   .parse(process.argv);
@@ -103,18 +104,8 @@ function addMonth(line, i, arr) {
   arr[i] = line + '  ' + this[i];
 }
 
-function addYear(mmdd) {
-  return typeof mmdd === 'string' ?
-          new Date(this + '-' + mmdd) :
-          mmdd(+this);
-}
-
 function newLine(lines) {
   return lines.join('\n');
-}
-
-function nulled(date) {
-  return date != null;
 }
 
 function setHighlight(i) {
